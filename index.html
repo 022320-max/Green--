@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green Wedge | 비인간권리 충돌 시뮬레이션</title>
+<style>
+:root{--forest:#173f32;--leaf:#4c7b54;--mint:#e7f0df;--cream:#faf8ef;--ink:#24352e;--muted:#65756d;--gold:#e2b85c;--line:#d9e2d4;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+header{background:linear-gradient(125deg,#163d31,#44754c);color:white;padding:34px 20px 30px}
+.wrap{max-width:1000px;margin:auto}.eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.78rem;color:#d8e8c9;font-weight:800}
+h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.12;margin:.45rem 0 1rem;letter-spacing:-.04em}
+header p{max-width:720px;color:#e7f0e5;margin:0;font-size:1.03rem}
+main{max-width:1000px;margin:26px auto;padding:0 18px 60px}
+.pill{display:inline-block;background:#e8efdc;color:#31553b;padding:5px 11px;border-radius:99px;font-size:.8rem;font-weight:750}
+.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 7px 22px #193d2910}
+h2{font-size:1.25rem;margin:0 0 12px;letter-spacing:-.02em}h3{font-size:1rem;margin:0 0 8px}
+.muted{color:var(--muted);font-size:.94rem}.scene{background:linear-gradient(135deg,#e9f1dd,#f5f2dc);border-radius:14px;padding:17px;margin:14px 0}
+.scene strong{color:var(--forest)}.stakeholders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.stake{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fcfdf9;font-size:.9rem}.stake b{display:block;margin-bottom:3px}
+button{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:11px 14px;font-weight:750;transition:transform .12s,filter .12s}
+button:hover{filter:brightness(.97);transform:translateY(-1px)}button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.primary{background:var(--forest);color:white}.secondary{background:#edf2e8;color:var(--forest);border:1px solid var(--line)}
+.choices{display:grid;gap:10px;margin-top:12px}.choice{text-align:left;background:white;border:1px solid var(--line);padding:14px;border-radius:13px;color:var(--ink)}
+.choice small{display:block;color:var(--muted);font-weight:450;margin-top:4px}.choice.selected{border:2px solid var(--leaf);background:#f2f7ed;padding:13px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.metric{background:#f5f7f1;border-radius:12px;padding:12px}.metric span{display:block;font-size:.78rem;color:var(--muted)}.metric strong{font-size:1.25rem}
+.bar{height:8px;background:#e4e9df;border-radius:9px;overflow:hidden;margin-top:7px}.bar i{display:block;height:100%;background:var(--leaf);width:50%;transition:width .4s}
+.result{margin-top:16px;border-left:4px solid var(--gold);background:#fffaf0;padding:15px;border-radius:0 12px 12px 0}
+.hidden{display:none}.tag{font-size:.76rem;font-weight:800;color:#6c5722;background:#f9edc8;border-radius:6px;padding:3px 7px;display:inline-block;margin-bottom:7px}
+.timeline{display:grid;gap:10px}.event{display:grid;grid-template-columns:90px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.event:last-child{border:0}.event time{font-weight:800;color:var(--leaf);font-size:.85rem}
+footer{border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:.85rem;margin-top:22px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(3,1fr)}main{padding-inline:12px}.card{padding:17px}.stakeholders{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.metrics{grid-template-columns:1fr}.event{grid-template-columns:70px 1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">GREEN WEDGE · 사회 갈등 실험실</div>
+<h1>누구의 권리를<br>먼저 지킬 것인가?</h1>
+<p>인간의 주거·재산권과 비인간 동물의 서식권이 충돌하는 가상의 상황을 선택으로 해결해 보세요. 정답을 맞히는 게임이 아니라, 선택의 이익과 비용을 함께 살펴보는 시뮬레이션입니다.</p>
+</div></header>
+<main>
+<div class="pill">시나리오 01 · 생태통로와 공공병원</div>
+<div class="layout">
+<section class="card">
+<h2>사건 개요</h2>
+<p>도시 외곽에 공공병원과 주거 단지를 확장하는 계획이 발표됐다. 그러나 예정 부지는 멸종위기종을 포함한 야생동물의 이동 경로와 겹친다. 공사가 진행되면 병원 접근성은 좋아지지만, 서식지가 단절될 가능성이 있다.</p>
+<div class="scene"><strong>긴급 상황</strong><br>폭우가 오기 전까지 72시간 안에 임시 결정을 내려야 한다. 병원 측은 공사가 늦어지면 의료 서비스 확충이 미뤄진다고 주장하고, 생태 조사팀은 지금 공사를 시작하면 회복하기 어려운 피해가 발생할 수 있다고 경고한다.</div>
+<h3>이해관계자</h3>
+<div class="stakeholders">
+<div class="stake"><b>🏘️ 주민·환자</b>안전한 주거와 가까운 의료 서비스가 필요하다.</div>
+<div class="stake"><b>🦊 야생동물</b>먹이·번식지에 접근하고 안전하게 이동할 서식 환경이 필요하다.</div>
+<div class="stake"><b>🏥 병원·기업</b>공공시설 확충과 사업 일정의 예측 가능성을 원한다.</div>
+<div class="stake"><b>⚖️ 국가기관</b>법적 권리와 장기적인 생태계 영향을 함께 고려해야 한다.</div>
+</div>
+<div class="result"><span class="tag">핵심 질문</span><br>비인간의 권리를 인간의 권리와 동등하게 고려한다면, 어떤 절차와 기준으로 결정을 내려야 할까?</div>
+</section>
+<section class="card">
+<h2>당신은 조정위원회 대표입니다</h2>
+<p class="muted">가장 먼저 실행할 정책 하나를 선택하세요. 선택에 따라 사회적 효과가 달라집니다.</p>
+<div class="choices" id="choices">
+<button class="choice" data-choice="A"><b>A. 공사 즉시 진행</b><small>병원·주거 공급을 우선하고, 사후에 녹지 보완책을 마련한다.</small></button>
+<button class="choice" data-choice="B"><b>B. 공사 전면 중단</b><small>생태 조사와 권리 영향 평가가 끝날 때까지 사업을 멈춘다.</small></button>
+<button class="choice" data-choice="C"><b>C. 구간 조정·생태통로 우선 설치</b><small>설계와 공사 일정을 바꾸고, 독립기관이 생태통로의 효과를 검증한다.</small></button>
+<button class="choice" data-choice="D"><b>D. 시민·생태 대표 공동 심의</b><small>주민, 병원, 생태 전문가와 비인간권리 옹호자가 참여해 공개 심의한다.</small></button>
+</div>
+<div class="actions"><button class="primary" id="resolve">선택 결과 확인</button><button class="secondary" id="reset">처음부터</button></div>
+<div id="outcome" class="result hidden" aria-live="polite"></div>
+</section>
+</div>
+<section class="card" style="margin-top:18px">
+<h2>사회 상태판</h2>
+<p class="muted">수치는 실제 통계가 아닌 토론용 가상 지표입니다. 숫자가 높을수록 해당 가치가 더 잘 보호된다는 뜻입니다.</p>
+<div class="metrics">
+<div class="metric"><span>인간의 긴급 필요</span><strong id="humanN">50</strong><div class="bar"><i id="humanB"></i></div></div>
+<div class="metric"><span>비인간 권리 보호</span><strong id="natureN">50</strong><div class="bar"><i id="natureB"></i></div></div>
+<div class="metric"><span>절차적 신뢰</span><strong id="trustN">50</strong><div class="bar"><i id="trustB"></i></div></div>
+</div>
+<div id="followup" class="hidden">
+<h3 style="margin-top:20px">다음 단계: 추가 충돌</h3>
+<p id="followText"></p>
+<p class="muted">후속 상황에서도 어떤 가치를 우선할지 선택하면, 한 번의 결정으로 끝나지 않는 정책 갈등을 생각해 볼 수 있습니다.</p>
+<div class="choices">
+<button class="choice" data-follow="1"><b>1. 예산을 더 투입해 생태통로를 보완한다</b><small>비용이 늘고 일부 공공시설의 개장이 늦어진다.</small></button>
+<button class="choice" data-follow="2"><b>2. 공사 속도를 유지하고 피해를 관찰한다</b><small>당장의 일정은 지키지만, 피해가 확인된 뒤에는 복구가 어려울 수 있다.</small></button>
+<button class="choice" data-follow="3"><b>3. 독립 감시단에 중단 권한을 부여한다</b><small>감시와 책임성이 커지지만, 의사결정이 느려질 수 있다.</small></button>
+</div>
+<div id="followOutcome" class="result hidden" aria-live="polite"></div>
+</div>
+</section>
+<section class="card" style="margin-top:18px">
+<h2>시뮬레이션 돌아보기</h2>
+<div class="timeline">
+<div class="event"><time>쟁점 1</time><div><b>권리의 범위</b><br><span class="muted">동물과 생태계는 단순한 자원인가, 보호받아야 할 이해관계자인가?</span></div></div>
+<div class="event"><time>쟁점 2</time><div><b>대표성</b><br><span class="muted">말로 의사를 표현할 수 없는 존재의 이익을 누가, 어떤 근거로 대변해야 하는가?</span></div></div>
+<div class="event"><time>쟁점 3</time><div><b>책임과 비용</b><br><span class="muted">보호 비용은 사업자·정부·지역사회 중 누가 부담해야 하며, 피해가 발생하면 누가 책임지는가?</span></div></div>
+<div class="event"><time>쟁점 4</time><div><b>사전 예방</b><br><span class="muted">피해가 확실해진 뒤 대응할 것인가, 되돌리기 어려운 피해를 막기 위해 먼저 제한할 것인가?</span></div></div>
+</div>
+<footer>Green Wedge 모식도에서 제시된 중심지, 국가기관, 교육기관, 기업·병원, 민간감시기관의 역할을 참고해 만든 학습용 가상 시뮬레이션입니다. 실제 법률 자문이나 현실의 생태 영향 평가를 대신하지 않습니다.</footer>
+</section>
+</main>
+<script>
+const initial={human:50,nature:50,trust:50};
+const effects={
+ A:{human:82,nature:24,trust:35,title:"A안: 당장의 필요는 충족되지만 신뢰가 흔들립니다",body:"병원과 주거 공급은 빨라질 수 있습니다. 하지만 사후 보완은 이미 사라진 서식지를 되돌리지 못할 수 있고, 비인간의 권리를 의사결정 초기에 고려하지 않았다는 비판이 나옵니다. ‘나중에 보상하면 되는가?’가 핵심 논쟁이 됩니다.",follow:"공사가 진행되던 중 생태통로 주변에서 야생동물의 이동이 줄었다는 관찰 결과가 나왔습니다. 이미 진행된 공사를 어느 정도까지 되돌릴까요?",scores:[82,24,35]},
+ B:{human:34,nature:88,trust:58,title:"B안: 생태적 위험은 줄지만 인간의 필요가 미뤄집니다",body:"조사 기간 동안 돌이키기 어려운 생태 피해를 예방할 수 있습니다. 반면 의료 서비스 확충과 주거 공급이 늦어져 취약한 주민이 더 큰 불편을 겪을 수 있습니다. 보호 정책이 사회적 약자에게 비용을 떠넘기지 않도록 보완책이 필요합니다.",follow:"조사 결과, 일부 구간은 중요한 이동 경로지만 전체 부지를 보존할 필요까지는 없다는 의견이 나왔습니다. 이제 어떤 방식으로 결정을 내릴까요?",scores:[34,88,58]},
+ C:{human:69,nature:76,trust:68,title:"C안: 절충을 시도하지만 효과 검증이 관건입니다",body:"공사 구간을 조정하고 생태통로를 먼저 설치하면 의료·주거 사업과 이동 경로 보호를 함께 추구할 수 있습니다. 다만 통로가 실제로 이용되는지, 빛·소음·차량 때문에 기능이 떨어지지 않는지 장기적으로 검증해야 합니다. ‘친환경 설계’라는 이름만으로 충분한지 따져야 합니다.",follow:"생태통로 설치 비용이 예상보다 커졌고, 개장 일정도 지연될 가능성이 있습니다. 추가 비용과 일정 지연을 어떻게 관리할까요?",scores:[69,76,68]},
+ D:{human:61,nature:73,trust:86,title:"D안: 정당성은 높아질 수 있지만 대표성이 중요합니다",body:"공개 심의는 다양한 이해관계를 드러내고 결정의 정당성을 높일 수 있습니다. 하지만 회의에 참여한 사람이 실제로 누구를 대표하는지, 전문가 의견과 주민 의견이 어떻게 반영되는지 명확한 규칙이 필요합니다. 비인간권리 대표가 상징적인 자리에만 머물지 않도록 실질적인 권한도 설계해야 합니다.",follow:"심의회에서 주민 대표와 생태 대표가 합의하지 못했습니다. 결정을 미루는 것 자체도 누군가에게 비용을 줄 수 있습니다. 다음 원칙을 선택하세요.",scores:[61,73,86]}
+};
+let chosen=null, followChosen=null;
+const $=id=>document.getElementById(id);
+function paint(s){for(const k of ["human","nature","trust"]){$(k+"N").textContent=s[k];$(k+"B").style.width=s[k]+"%";}}
+document.querySelectorAll("[data-choice]").forEach(btn=>btn.addEventListener("click",()=>{
+ document.querySelectorAll("[data-choice]").forEach(b=>b.classList.remove("selected"));btn.classList.add("selected");chosen=btn.dataset.choice;
+}));
+$("resolve").addEventListener("click",()=>{
+ if(!chosen){$("outcome").classList.remove("hidden");$("outcome").innerHTML="먼저 A~D 중 한 가지 정책을 선택해 주세요.";return;}
+ const e=effects[chosen];paint({human:e.scores[0],nature:e.scores[1],trust:e.scores[2]});
+ $("outcome").classList.remove("hidden");$("outcome").innerHTML='<span class="tag">선택 결과</span><h3>'+e.title+'</h3><p>'+e.body+'</p>';
+ $("followup").classList.remove("hidden");$("followText").textContent=e.follow;$("followOutcome").classList.add("hidden");followChosen=null;
+});
+document.querySelectorAll("[data-follow]").forEach(btn=>btn.addEventListener("click",()=>{
+ document.querySelectorAll("[data-follow]").forEach(b=>b.classList.remove("selected"));btn.classList.add("selected");followChosen=Number(btn.dataset.follow);
+ let base=effects[chosen].scores.slice();let title,body;
+ if(followChosen===1){base[0]-=8;base[1]+=10;base[2]+=2;title="추가 투자: 보호 수준을 높이지만 공공 부담이 커집니다";body="생태통로와 모니터링을 강화할 수 있습니다. 다만 예산의 출처와 의료·주거 일정의 지연을 보완할 방안을 함께 공개해야 합니다."}
+ if(followChosen===2){base[0]+=7;base[1]-=13;base[2]-=8;title="속도 유지: 단기 편익과 장기 위험의 교환";body="사업 일정은 유지되지만, 피해가 확인될 때까지 기다리는 방식은 비가역적 손실을 키울 수 있습니다. 사전 예방 원칙을 어느 정도 적용할지 다시 논의해야 합니다."}
+ if(followChosen===3){base[0]-=3;base[1]+=6;base[2]+=12;title="독립 감시: 책임성이 커지지만 권한 설계가 필요합니다";body="기준을 넘는 생태 피해가 발견되면 공사를 일시 중단하도록 할 수 있습니다. 대신 중단 기준, 증거 기준, 이의 제기 절차를 미리 정해야 자의적 결정이라는 논란을 줄일 수 있습니다."}
+ base=base.map(v=>Math.max(0,Math.min(100,v)));paint({human:base[0],nature:base[1],trust:base[2]});
+ $("followOutcome").classList.remove("hidden");$("followOutcome").innerHTML='<span class="tag">후속 결정</span><h3>'+title+'</h3><p>'+body+'</p><p><b>토론 질문:</b> 이 결정에서 비용을 부담하는 집단과 이익을 얻는 집단은 누구이며, 그 분배는 정당한가?</p>';
+}));
+$("reset").addEventListener("click",()=>{chosen=null;followChosen=null;document.querySelectorAll("button.selected").forEach(b=>b.classList.remove("selected"));$("outcome").classList.add("hidden");$("followup").classList.add("hidden");$("followOutcome").classList.add("hidden");paint(initial);window.scrollTo({top:0,behavior:"smooth"});});
+paint(initial);
+</script>
+</body>
+</html>
